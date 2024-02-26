@@ -39,7 +39,5 @@ public class LoginView extends JPanel {
         totalPanel.add(buttonPanel);
 
         add(totalPanel);
-
-
     }
 }
