@@ -16,37 +16,6 @@ public class User {
     public User() {
     }
 
-    //  String password = "12345678";
-    //    byte[] salt = getSalt();
-    //
-    //    byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), salt);
-    //
-    //    //verification
-    //    byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), salt);
-    //
-    //    System.out.println("Password verification successful: " + Arrays.equals(hashedPassword, verificationHash));
-    //}
-    //
-    //private static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {
-    //    try {
-    //        MessageDigest md = MessageDigest.getInstance("SHA-256");
-    //        md.update(salt);
-    //
-    //        return md.digest(password);
-    //
-    //    } catch (NoSuchAlgorithmException e) {
-    //        throw new RuntimeException("Hashing failed");
-    //    }
-    //}
-    //
-    //private static byte[] getSalt() {
-    //    SecureRandom sr = new SecureRandom();
-    //    byte[] salt = new byte[16];
-    //    sr.nextBytes(salt);
-    //
-    //    return salt;
-    //}
-
 
     public String getFullName() {
         return fullName;

@@ -2,6 +2,12 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Arrays;
 
 public class LoginView extends JPanel {
 
@@ -35,9 +41,45 @@ public class LoginView extends JPanel {
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton loginButton = new JButton("Connexion");
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                validatePassword(String.valueOf(passwordField.getPassword()));
+            }
+        });
+
         buttonPanel.add(loginButton);
         totalPanel.add(buttonPanel);
 
         add(totalPanel);
+
+    }
+    private static void validatePassword(String password) {
+//      String password = "12345678";
+        byte[] salt = getSalt();
+
+        byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), salt);
+
+        //verification
+        byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), salt);
+
+        System.out.println("Password verification successful: " + Arrays.equals(hashedPassword, verificationHash));
+    }
+
+    private static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(salt);
+            return md.digest(password);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Hashing failed");
+        }
+    }
+
+    private static byte[] getSalt() {
+        SecureRandom sr = new SecureRandom();
+        byte[] salt = new byte[16];
+        sr.nextBytes(salt);
+        return salt;
     }
 }
