@@ -25,14 +25,12 @@ public class Main extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-
         JLabel labelDesc = new JLabel("Nos services de financement offrent des solutions pour répondre à vous.");
         labelDesc.setFont(new Font("Arial", Font.PLAIN, 18));
         JLabel labelContact = new JLabel("Contact: 514-233-3333");
         labelContact.setFont(new Font("Arial", Font.PLAIN, 18));
         JButton loginButton = new JButton("Connexion");
         JButton registerButton = new JButton("Inscription");
-
 
         JPanel labelPanel = new JPanel(new GridLayout(0, 1));
         labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,4 +83,3 @@ public class Main extends JFrame {
         });
     }
 }
-
