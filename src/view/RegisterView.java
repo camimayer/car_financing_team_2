@@ -242,14 +242,11 @@ public class RegisterView extends JPanel {
             add(maritalStatusField);
             add(yearsInCanadaLabel);
             add(yearsInCanadaField);
-
         }
-
         // Ajout d'espacements pour l'esthétique
         add(line);
         add(inscriptionButton);
         revalidate();
-
     }
 
     private Client prepareClient() {
@@ -301,10 +298,27 @@ public class RegisterView extends JPanel {
     // Méthode pour vérifier si tous les champs sont remplis
     private boolean areAllFieldsFilled() {
 
-        return !fullNameField.getText().isEmpty() &&
-                !emailField.getText().isEmpty() &&
-                !new String(passwordField.getPassword()).isEmpty() &&
-                !phoneNumberField.getText().isEmpty();
+         if ("Client".equals(userTypeComboBox.getSelectedItem())) {
+             return !fullNameField.getText().isEmpty() &&
+                    !emailField.getText().isEmpty() &&
+                    !new String(passwordField.getPassword()).isEmpty() &&
+                    !phoneNumberField.getText().isEmpty() &&
+                    !jobInfoField.getText().isEmpty() &&
+                    !annualIncomeField.getText().isEmpty() &&
+                    !creditNoteField.getText().isEmpty() &&
+                    !birthDateField.getText().isEmpty() &&
+                    !maritalStatusField.getText().isEmpty() &&
+                    !yearsInCanadaField.getText().isEmpty();
+         } else {
+             return !fullNameField.getText().isEmpty() &&
+                     !emailField.getText().isEmpty() &&
+                     !new String(passwordField.getPassword()).isEmpty() &&
+                     !phoneNumberField.getText().isEmpty() &&
+                     !bankNameField.getText().isEmpty() &&
+                     !accountDetailsField.getText().isEmpty() &&
+                     !riskLevelField.getText().isEmpty() &&
+                     !investmentEducationField.getText().isEmpty();
+         }
 
     }
 

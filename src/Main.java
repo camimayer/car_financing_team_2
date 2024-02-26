@@ -58,8 +58,6 @@ public class Main extends JFrame {
         cardPanel.add(registerView, "Register");
 
         add(cardPanel);
-
-
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel, "Login");
