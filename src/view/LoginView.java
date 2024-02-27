@@ -44,7 +44,7 @@ public class LoginView extends JPanel {
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                validatePassword(String.valueOf(passwordField.getPassword()));
+                validatePassword(usernameField.getText(), String.valueOf(passwordField.getPassword()));
             }
         });
 
@@ -54,7 +54,7 @@ public class LoginView extends JPanel {
         add(totalPanel);
 
     }
-    private static void validatePassword(String password) {
+    private static void validatePassword(String user, String password) {
 //      String password = "12345678";
         byte[] salt = getSalt();
 
@@ -63,7 +63,18 @@ public class LoginView extends JPanel {
         //verification
         byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), salt);
 
-        System.out.println("Password verification successful: " + Arrays.equals(hashedPassword, verificationHash));
+//        System.out.println("Password verification successful: " + Arrays.equals(hashedPassword, verificationHash));
+        if(Arrays.equals(hashedPassword, verificationHash)){
+            JOptionPane.showMessageDialog(null, "Login: " + user + "\nPassword: " + hashedPassword, "Welcome",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Invalide password. Try again. " , "Welcome",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
+
     }
 
     private static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {

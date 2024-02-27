@@ -60,6 +60,7 @@ public class Main extends JFrame {
         add(cardPanel);
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                setSize(300, 400);
                 cardLayout.show(cardPanel, "Login");
             }
         });
