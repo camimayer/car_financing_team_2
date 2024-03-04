@@ -14,7 +14,7 @@ public class Main extends JFrame {
     private CardLayout cardLayout = new CardLayout();
     private JPanel cardPanel = new JPanel(cardLayout);
     private JPanel mainPanel = new ImagePanel();
-    private LoginView loginView = new LoginView();
+    private LoginView loginView = new LoginView(cardLayout, cardPanel, this);
     private RegisterView registerView = new RegisterView();
 
     private Image backgroundImage;

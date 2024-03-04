@@ -10,8 +10,15 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 
 public class LoginView extends JPanel {
+    CardLayout cardLayout;
+    JPanel cardPanel;
+    JFrame main;
+    public LoginView(CardLayout cardLayout, JPanel cardPanel, JFrame main) {
 
-    public LoginView() {
+        this.cardLayout = cardLayout;
+        this.cardPanel = cardPanel;
+        this.main = main;
+
         setLayout(new FlowLayout(FlowLayout.CENTER, 30, 10));
 
         JPanel totalPanel = new JPanel(new GridLayout(0, 1, 30, 30));
@@ -42,13 +49,24 @@ public class LoginView extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton loginButton = new JButton("Connexion");
 
+        JButton backButton = new JButton("Back");
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                main.setSize(600, 400);
+                cardLayout.show(cardPanel, "Main");
+            }
+        });
+
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 validatePassword(usernameField.getText(), String.valueOf(passwordField.getPassword()));
             }
         });
 
+
         buttonPanel.add(loginButton);
+        buttonPanel.add(backButton);
         totalPanel.add(buttonPanel);
 
         add(totalPanel);
@@ -57,6 +75,8 @@ public class LoginView extends JPanel {
     private static void validatePassword(String user, String password) {
 //      String password = "12345678";
         byte[] salt = getSalt();
+
+        // Novo comentario
 
         byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), salt);
 
