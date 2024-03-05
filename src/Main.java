@@ -31,6 +31,7 @@ public class Main extends JFrame {
         labelContact.setFont(new Font("Arial", Font.PLAIN, 18));
         JButton loginButton = new JButton("Connexion");
         JButton registerButton = new JButton("Inscription");
+        JButton financeButton = new JButton("Status demande financement");
 
         JPanel labelPanel = new JPanel(new GridLayout(0, 1));
         labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
@@ -42,6 +43,7 @@ public class Main extends JFrame {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(loginButton);
         buttonPanel.add(registerButton);
+        buttonPanel.add(financeButton);
         buttonPanel.setBackground(new Color(255, 255, 255, 100));
 
         JPanel mainContentPanel = new JPanel(new GridLayout(0, 1));
