@@ -1,14 +1,11 @@
+import view.FinancingForm;
 import view.ImagePanel;
 import view.LoginView;
 import view.RegisterView;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 public class Main extends JFrame {
     private CardLayout cardLayout = new CardLayout();
@@ -16,6 +13,8 @@ public class Main extends JFrame {
     private JPanel mainPanel = new ImagePanel();
     private LoginView loginView = new LoginView(cardLayout, cardPanel, this);
     private RegisterView registerView = new RegisterView();
+
+    private FinancingForm financingForm = new FinancingForm(cardLayout, cardPanel, this);
 
     private Image backgroundImage;
 
@@ -25,8 +24,8 @@ public class Main extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JLabel labelDesc = new JLabel("Nos services de financement offrent des solutions pour répondre à vous.");
-        labelDesc.setFont(new Font("Arial", Font.PLAIN, 18));
+        JLabel labelDesc = new JLabel("Nos services de financement offrent des solutions pour répondre à vos besoins.");
+        labelDesc.setFont(new Font("Arial", Font.PLAIN, 17));
         JLabel labelContact = new JLabel("Contact: 514-233-3333");
         labelContact.setFont(new Font("Arial", Font.PLAIN, 18));
         JButton loginButton = new JButton("Connexion");
@@ -56,6 +55,7 @@ public class Main extends JFrame {
         cardPanel.add(mainPanel, "Main");
         cardPanel.add(loginView, "Login");
         cardPanel.add(registerView, "Register");
+        cardPanel.add(financingForm, "Financing");
 
         add(cardPanel);
         loginButton.addActionListener(new ActionListener() {
@@ -80,5 +80,6 @@ public class Main extends JFrame {
                 frame.setVisible(true);
             }
         });
+
     }
 }
