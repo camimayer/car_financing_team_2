@@ -293,8 +293,6 @@ public class RegisterView extends JPanel {
         return investor;
     }
 
-
-
     // Méthode pour vérifier si tous les champs sont remplis
     private boolean areAllFieldsFilled() {
 

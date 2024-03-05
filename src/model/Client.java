@@ -18,7 +18,6 @@ public class Client extends User {
         this.creditNote = creditNote;
         this.birthDateField = birthDateField;
         this.maritalStatus = maritalStatus;
-
         this.yearsInCanada = yearsInCanada;
     }
 

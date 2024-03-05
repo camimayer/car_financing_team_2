@@ -35,14 +35,11 @@ public class LoginView extends JPanel {
         usernamePanel.add(usernameLabel);
         usernamePanel.add(usernameField);
 
-
         JLabel passwordLabel = new JLabel("Password:");
         passwordLabel.setHorizontalAlignment(SwingConstants.LEFT);
         JPasswordField passwordField = new JPasswordField(15);
         usernamePanel.add(passwordLabel);
         usernamePanel.add(passwordField);
-
-        //usernamePanel.setBackground(new Color(111, 222, 123, 70));
 
         totalPanel.add(usernamePanel);
 
@@ -60,10 +57,15 @@ public class LoginView extends JPanel {
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                validatePassword(usernameField.getText(), String.valueOf(passwordField.getPassword()));
+                if(validatePassword(usernameField.getText(), String.valueOf(passwordField.getPassword()))){
+                    main.setSize(500, 300);
+                    cardLayout.show(cardPanel, "Financing");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalide password. Try again. " , "Welcome",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
-
 
         buttonPanel.add(loginButton);
         buttonPanel.add(backButton);
@@ -72,29 +74,26 @@ public class LoginView extends JPanel {
         add(totalPanel);
 
     }
-    private static void validatePassword(String user, String password) {
-//      String password = "12345678";
+    private static boolean validatePassword(String user, String password) {
+        boolean validation;
         byte[] salt = getSalt();
-
-        // Novo comentario
 
         byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), salt);
 
         //verification
         byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), salt);
 
-//        System.out.println("Password verification successful: " + Arrays.equals(hashedPassword, verificationHash));
         if(Arrays.equals(hashedPassword, verificationHash)){
-            JOptionPane.showMessageDialog(null, "Login: " + user + "\nPassword: " + hashedPassword, "Welcome",
-                    JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(null, "Login: " + user + "\nPassword: " + hashedPassword, "Welcome",
+//                    JOptionPane.INFORMATION_MESSAGE);
+            validation = true;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Invalide password. Try again. " , "Welcome",
-                    JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(null, "Invalide password. Try again. " , "Welcome",
+//                    JOptionPane.INFORMATION_MESSAGE);
+            validation = false;
         }
-
-
-
+        return validation;
     }
 
     private static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {
