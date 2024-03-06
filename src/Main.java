@@ -1,7 +1,5 @@
-import view.FinancingForm;
-import view.ImagePanel;
-import view.LoginView;
-import view.RegisterView;
+import view.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +12,9 @@ public class Main extends JFrame {
     private LoginView loginView = new LoginView(cardLayout, cardPanel, this);
     private RegisterView registerView = new RegisterView();
 
-    private FinancingForm financingForm = new FinancingForm(cardLayout, cardPanel, this);
+    private FinanceView financeView = new FinanceView();
+
+    public FinancingForm financingForm = new FinancingForm(cardLayout, cardPanel, this);
 
     private Image backgroundImage;
 
@@ -58,6 +58,7 @@ public class Main extends JFrame {
         cardPanel.add(loginView, "Login");
         cardPanel.add(registerView, "Register");
         cardPanel.add(financingForm, "Financing");
+        cardPanel.add(financeView, "FinanceStatus");
 
         add(cardPanel);
         loginButton.addActionListener(new ActionListener() {
@@ -70,6 +71,12 @@ public class Main extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel, "Register");
+            }
+        });
+
+        financeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel, "FinanceStatus");
             }
         });
     }
