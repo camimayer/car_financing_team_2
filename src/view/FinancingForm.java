@@ -1,7 +1,5 @@
 package view;
 
-import jdk.internal.access.JavaSecurityAccess;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -97,7 +95,7 @@ public class FinancingForm extends JPanel {
                         if(validateLoanDuration(dureePretField.getText())){
                             if ("d'Occasion".equals(typeVehiculeComboBox.getSelectedItem())) {
                                 if(validateMileage(kilometrageField.getText())){
-                                    // Chama o BD
+                                    // Connect the BD
                                 }
                             }else{
                                 // Chama BD
