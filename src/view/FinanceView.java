@@ -6,6 +6,9 @@ import java.awt.*;
 public class FinanceView extends JPanel {
 
       public FinanceView(){
+
+          setLayout(new FlowLayout(FlowLayout.CENTER, 30, 10));
+
           JPanel totalPanel = new JPanel(new GridLayout(0, 1, 30, 30));
           JLabel title = new JLabel("Page de Financement");
           title.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -20,6 +23,8 @@ public class FinanceView extends JPanel {
           marquePanel.add(marqueLabel);
           marquePanel.add(marqueField);
 
+          totalPanel.add(marquePanel);
+
           JPanel modelePanel = new JPanel(new GridLayout(0, 1));
 
           JLabel modeleLabel = new JLabel("hahahah");
@@ -27,6 +32,8 @@ public class FinanceView extends JPanel {
           JTextField modeleField = new JTextField(15);
           modelePanel.add(modeleLabel);
           modelePanel.add(modeleField);
+
+          totalPanel.add(modelePanel);
 
           JPanel anneePanel = new JPanel(new GridLayout(0, 1));
 
@@ -36,6 +43,8 @@ public class FinanceView extends JPanel {
           anneePanel.add(anneeLabel);
           anneePanel.add(marqueField);
 
+          totalPanel.add(anneePanel);
+
           JPanel kilometragePanel = new JPanel(new GridLayout(0, 1));
 
           JLabel kilometrageLabel = new JLabel("55.000");
@@ -44,8 +53,8 @@ public class FinanceView extends JPanel {
           kilometragePanel.add(kilometrageLabel);
           kilometragePanel.add(kilometrageField);
 
+          totalPanel.add(kilometragePanel);
 
-
-
+          add(totalPanel);
     }
 }
