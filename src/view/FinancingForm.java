@@ -97,7 +97,7 @@ public class FinancingForm extends JPanel {
                         if(validateLoanDuration(dureePretField.getText())){
                             if ("d'Occasion".equals(typeVehiculeComboBox.getSelectedItem())) {
                                 if(validateMileage(kilometrageField.getText())){
-                                    // Chama BD
+                                    // Chama o BD
                                 }
                             }else{
                                 // Chama BD
