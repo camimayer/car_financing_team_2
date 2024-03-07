@@ -1,3 +1,4 @@
+import config.PostgresSQLConfig;
 import view.*;
 
 import javax.swing.*;
@@ -19,6 +20,8 @@ public class Main extends JFrame {
     private Image backgroundImage;
 
     public Main() {
+        PostgresSQLConfig.initializeDatabase();
+
         setTitle("Financement Automobile XYZ");
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -1,5 +1,9 @@
 package view;
 
+import DAO.FinancementDAO;
+import DAO.FinancementDAOImpl;
+import model.Financement;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -95,10 +99,10 @@ public class FinancingForm extends JPanel {
                         if(validateLoanDuration(dureePretField.getText())){
                             if ("d'Occasion".equals(typeVehiculeComboBox.getSelectedItem())) {
                                 if(validateMileage(kilometrageField.getText())){
-                                    // Connect the BD
+                                    addToDB();
                                 }
                             }else{
-                                // Chama BD
+                                addToDB();
                             }
                         }
                     }
@@ -112,12 +116,13 @@ public class FinancingForm extends JPanel {
 
         
     }
-//    private void areAllFieldsFilled(String vin, String amount, String duration, String mileage){
-//
-////        if(vin.isEmpty() || amount.isEmpty() || duration.isEmpty() || mileage.isEmpty()){
-////            JOptionPane.showMessageDialog(null, "Il faut remplir le champs" , "VIN NULL", WARNING_MESSAGE);
-////        }
-//    }
+
+    public void addToDB(){
+        Financement financement = new Financement(vinField.getText(), marqueField.getText(), modeleField.getText(), Integer.valueOf(lanneeField.getText()), Double.valueOf(montantPretField.getText()), Integer.valueOf(kilometrageField.getText()), Integer.valueOf(dureePretField.getText()), typeVehiculeComboBox.getSelectedItem().toString());
+        FinancementDAO financementDAO = new FinancementDAOImpl();
+        financementDAO.addFinancement(financement);
+    }
+
     public boolean validateVIN(String vin) {
         if(vin.isEmpty()){
             JOptionPane.showMessageDialog(null, "Il faut remplir le champs" , "VIN empty", WARNING_MESSAGE);
