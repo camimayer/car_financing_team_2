@@ -49,8 +49,16 @@ public class RegisterView extends JPanel {
 
     private JLabel line;
 
-    // Constructeur de la classe RegisterView
-    public RegisterView() {
+    CardLayout cardLayout;
+    JPanel cardPanel;
+    JFrame main;
+
+
+    public RegisterView(CardLayout cardLayout, JPanel cardPanel, JFrame main) {
+        this.cardLayout = cardLayout;
+        this.cardPanel = cardPanel;
+        this.main = main;
+
         // Configuration du layout en grille pour organiser les composants
         setLayout(new GridLayout(0, 2));
 
@@ -93,6 +101,16 @@ public class RegisterView extends JPanel {
 
         // Ajout d'un bouton pour l'inscription avec un gestionnaire d'événements
         JButton registerButton = new JButton("S'inscrire");
+
+
+        JButton backButton = new JButton("Page principal");
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                main.setSize(600, 400);
+                cardLayout.show(cardPanel, "Main");
+                cardPanel.add(new FinanceView(cardLayout, cardPanel, main), "Financement");
+            }
+        });
 
         line = new JLabel();
 
@@ -187,6 +205,8 @@ public class RegisterView extends JPanel {
         // Ajout d'espacements pour l'esthétique
         add(line);
         add(registerButton);
+        add(line);
+        add(backButton);
     }
 
     private void viewControl(String typeView, JButton inscriptionButton, JLabel line) {
