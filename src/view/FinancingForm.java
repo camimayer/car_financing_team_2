@@ -52,7 +52,7 @@ public class FinancingForm extends JPanel {
         montantPretField = new JTextField();
         montantPretLabel = new JLabel("Montant du prêt désiré: ");
         dureePretField = new JTextField();
-        dureePretLabel = new JLabel("Durée du prêt: ");
+        dureePretLabel = new JLabel("Durée du prêt (mois): ");
         kilometrageField = new JTextField();
         kilometrageLabel = new JLabel("Kilométrage: ");
 
@@ -125,7 +125,7 @@ public class FinancingForm extends JPanel {
 
     public boolean validateVIN(String vin) {
         if(vin.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Il faut remplir le champs" , "VIN empty", WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vous devez remplir le champ Numéro d'identification du client (NIV)." , "VIN empty", WARNING_MESSAGE);
             return false;
         }else{
             if (vin.length() != 17) {
@@ -140,7 +140,7 @@ public class FinancingForm extends JPanel {
 
     public boolean validateLoanAmount(String amount) {
         if(amount.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Il faut remplir le champs" , "Amount empty", WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vous devez remplir le champ Montant du prêt." , "Amount empty", WARNING_MESSAGE);
             return false;
         }else{
             try{
@@ -150,7 +150,7 @@ public class FinancingForm extends JPanel {
                     return false;
                 }
             }catch (Exception err){
-                JOptionPane.showMessageDialog(null, "La valeur du prêt est numerique." , "Loan Amount", WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La valeur saisie doit être numérique." , "Loan Amount", WARNING_MESSAGE);
                 return false;
             }
 
@@ -161,17 +161,21 @@ public class FinancingForm extends JPanel {
 
     public boolean validateLoanDuration(String duration) {
         if(duration.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Il faut remplir le champs" , "Duration empty", WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vous devez remplir le champ Durée du prêt" , "Duration empty", WARNING_MESSAGE);
             return false;
         }else{
             try{
                 int durationInt = Integer.valueOf(duration);
-                if (durationInt <= 0 || durationInt > 48) {
-                    JOptionPane.showMessageDialog(null, "La durée maximale du prêt est de 4 ans.", "Loan Duration", WARNING_MESSAGE);
+                if (durationInt > 48) {
+//                if (durationInt <= 0 || durationInt > 48) {
+                    JOptionPane.showMessageDialog(null, "La durée maximale du prêt est de 48 mois.", "Loan Duration", WARNING_MESSAGE);
+                    return false;
+                } else if (durationInt <= 0) {
+                    JOptionPane.showMessageDialog(null, "La durée minimale du prêt est de 1 moi.", "Loan Duration", WARNING_MESSAGE);
                     return false;
                 }
             }catch (Exception err){
-                JOptionPane.showMessageDialog(null, "La valeur durée maximale du prêt est numerique." , "Loan Duration", WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La valeur saisie doit être numérique." , "Loan Duration", WARNING_MESSAGE);
                 return false;
             }
         }
@@ -180,7 +184,7 @@ public class FinancingForm extends JPanel {
 
     public boolean validateMileage(String mileage) {
         if(mileage.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Il faut remplir le champs" , "Mileage empty ", WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vous devez remplir le champ Kilométrage" , "Mileage empty ", WARNING_MESSAGE);
             return false;
         }else{
             try{
@@ -190,7 +194,7 @@ public class FinancingForm extends JPanel {
                     return false;
                 }
             }catch (Exception err){
-                JOptionPane.showMessageDialog(null, "Le kilométrage est numerique." , "Loan Amount", WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La valeur saisie doit être numérique." , "Loan Amount", WARNING_MESSAGE);
                 return false;
             }
 
