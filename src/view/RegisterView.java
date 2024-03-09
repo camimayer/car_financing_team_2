@@ -47,8 +47,6 @@ public class RegisterView extends JPanel {
     private JLabel investmentEducationLabel;
     private JTextField investmentEducationField;
 
-    private JLabel line;
-
     CardLayout cardLayout;
     JPanel cardPanel;
     JFrame main;
@@ -102,7 +100,6 @@ public class RegisterView extends JPanel {
         // Ajout d'un bouton pour l'inscription avec un gestionnaire d'événements
         JButton registerButton = new JButton("S'inscrire");
 
-
         JButton backButton = new JButton("Page principal");
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -112,8 +109,6 @@ public class RegisterView extends JPanel {
             }
         });
 
-        line = new JLabel();
-
         // Ajout des labels et des champs au panneau
         add(new JLabel("Type d'Utilisateur: "));
         add(userTypeComboBox);
@@ -122,7 +117,7 @@ public class RegisterView extends JPanel {
                 JComboBox<String> combo = (JComboBox<String>) e.getSource();
                 String selectedItem = (String) combo.getSelectedItem();
                 System.out.println(selectedItem);
-                viewControl(selectedItem, registerButton, line);
+                viewControl(selectedItem, registerButton, backButton);
             }
         });
 
@@ -202,22 +197,19 @@ public class RegisterView extends JPanel {
             }
         });
 
-        // Ajout d'espacements pour l'esthétique
-        add(line);
         add(registerButton);
-        add(line);
         add(backButton);
     }
 
-    private void viewControl(String typeView, JButton inscriptionButton, JLabel line) {
+//    private void viewControl(String typeView, JButton inscriptionButton, JLabel line) {
+    private void viewControl(String typeView, JButton inscriptionButton, JButton retourButton) {
         var isInvestor = "Investisseur".equals(typeView);
         var isClient = "Client".equals(typeView);
 
         remove(inscriptionButton);
-        remove(line);
+        remove(retourButton);
 
         if (isInvestor) {
-
             remove(jobInfoLabel);
             remove(jobInfoField);
             remove(creditNoteLabel);
@@ -263,9 +255,9 @@ public class RegisterView extends JPanel {
             add(yearsInCanadaLabel);
             add(yearsInCanadaField);
         }
-        // Ajout d'espacements pour l'esthétique
-        add(line);
+
         add(inscriptionButton);
+        add(retourButton);
         revalidate();
     }
 
