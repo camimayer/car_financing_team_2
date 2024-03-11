@@ -41,8 +41,8 @@ public class ClientDAOImpl implements ClientDAO{
     }
 
     @Override
-    public List<Client> getAllClients(Client client) {
-        String SQL_LIST = "SELECT idClient, fullName, email, password from client WHERE idClient = 1";
+    public List<Client> getAllClients() {
+        String SQL_LIST = "SELECT idClient, fullName, email, password from client";
         List <Client> listFromClients = new ArrayList<>();
 
         try (Connection conn = PostgresSQLConfig.connect();
@@ -50,8 +50,8 @@ public class ClientDAOImpl implements ClientDAO{
              ResultSet rs = pstmt.executeQuery()){
 
             while (rs.next()){
-                String emailDB = rs.getString("EmailDB");
-                String passwordDB = rs.getString("PasswordDB");
+                String emailDB = rs.getString("email");
+                String passwordDB = rs.getString("password");
                 Client clientDB = new Client(emailDB, passwordDB);
                 listFromClients.add(clientDB);
             }

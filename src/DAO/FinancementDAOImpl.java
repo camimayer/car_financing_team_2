@@ -57,14 +57,14 @@ public class FinancementDAOImpl implements FinancementDAO{
              ResultSet rs = pstmt.executeQuery()){
 
             while (rs.next()){
-                String vinDB = rs.getString("VINDB");
-                String marqueDB = rs.getString("MarqueDB");
-                String modeleDB = rs.getString("ModeleDB");
-                Integer anneeDB = rs.getInt("AnneeDB");
-                Double montantDB = rs.getDouble("MontantDB");
-                Integer kilometrageDB = rs.getInt("KilometrageDB");
-                Integer dureeDB = rs.getInt("DureeDB");
-                String typeDB = rs.getString("TypeDB");
+                String vinDB = rs.getString("vin");
+                String marqueDB = rs.getString("marque");
+                String modeleDB = rs.getString("modele");
+                Integer anneeDB = rs.getInt("annee");
+                Double montantDB = rs.getDouble("montant");
+                Integer kilometrageDB = rs.getInt("kilometrage");
+                Integer dureeDB = rs.getInt("duree");
+                String typeDB = rs.getString("type");
                 Financement financementDB = new Financement(vinDB, marqueDB, modeleDB, anneeDB, montantDB, kilometrageDB, dureeDB, typeDB);
                 listFromFinancements.add(financementDB);
             }

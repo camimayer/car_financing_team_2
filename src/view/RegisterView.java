@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static helper.Helper.dateConverter;
-import static view.LoginView.getSalt;
+import static view.LoginView.SALT;
 import static view.LoginView.hashPasswordWithSalt;
 
 // Définition de la classe RegisterView qui étend JPanel
@@ -217,9 +217,9 @@ public class RegisterView extends JPanel {
     }
 
     public void listClientFromDB(){
-        Client client = prepareClient();
-        ClientDAO clientDAO = new ClientDAOImpl();
-        clientDAO.getAllClients(client);
+//        Client client = prepareClient();
+//        ClientDAO clientDAO = new ClientDAOImpl();
+//        clientDAO.getAllClients(client);
 //        List<Client> retorno = clientDAO.getAllClients(client);
     }
     public void addClientToDB(){
@@ -294,13 +294,13 @@ public class RegisterView extends JPanel {
     }
 
     private Client prepareClient() {
-        byte[] salt = getSalt();
-        byte[] hashedPassword = hashPasswordWithSalt(passwordField.getText().getBytes(), salt);
+        byte[] hashedPassword = hashPasswordWithSalt(passwordField.getText().getBytes(), SALT);
 
         Client client = new Client();
         client.setFullName( fullNameField.getText());
         client.setEmail(emailField.getText());
-        client.setPassword(Arrays.toString(hashedPassword));
+        //client.setPassword(hashedPassword.toString());
+        client.setPassword(passwordField.getText());
         client.setPhoneNumber(phoneNumberField.getText());
         client.setJobInfo(jobInfoField.getText());
         if (!Objects.isNull(annualIncomeField.getText()) && !annualIncomeField.getText().isEmpty()) {
@@ -325,8 +325,7 @@ public class RegisterView extends JPanel {
     }
 
     private Investor prepareInvestor() {
-        byte[] salt = getSalt();
-        byte[] hashedPassword = hashPasswordWithSalt(passwordField.getText().getBytes(), salt);
+        byte[] hashedPassword = hashPasswordWithSalt(passwordField.getText().getBytes(), SALT);
         var investor = new Investor();
         investor.setFullName( fullNameField.getText());
         investor.setEmail(emailField.getText());
