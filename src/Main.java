@@ -19,6 +19,7 @@ public class Main extends JFrame {
 
     private Image backgroundImage;
 
+
     public Main() {
         PostgresSQLConfig.initializeDatabase();
 
@@ -34,7 +35,7 @@ public class Main extends JFrame {
         JButton loginButton = new JButton("Connexion");
         JButton registerButton = new JButton("Inscription");
         JButton financeButton = new JButton("Status demande financement");
-//        financeButton.setEnabled(false);
+        financeButton.setEnabled(false);
 
         JPanel labelPanel = new JPanel(new GridLayout(0, 1));
         labelDesc.setHorizontalAlignment(SwingConstants.CENTER);
@@ -68,6 +69,7 @@ public class Main extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setSize(300, 400);
+                financeButton.setEnabled(true);
                 cardLayout.show(cardPanel, "Login");
             }
         });
@@ -80,6 +82,10 @@ public class Main extends JFrame {
 
         financeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                Main main = new Main();
+                financeView = new FinanceView(cardLayout, cardPanel, main);
+
+                cardPanel.add(financeView, "FinanceStatus");
                 cardLayout.show(cardPanel, "FinanceStatus");
                 setSize(600, 500);
             }

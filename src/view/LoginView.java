@@ -1,5 +1,12 @@
 package view;
 
+import DAO.*;
+import com.sun.tools.javac.Main;
+import model.Client;
+import model.Financement;
+import model.Investor;
+import model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,11 +15,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class LoginView extends JPanel {
     CardLayout cardLayout;
     JPanel cardPanel;
     JFrame main;
+
+    public static final byte[] SALT = {
+            (byte) 0x5e, (byte) 0xa1, (byte) 0x9b, (byte) 0x2c,
+            (byte) 0xd3, (byte) 0xf8, (byte) 0x7e, (byte) 0x0f
+    };
+
     public LoginView(CardLayout cardLayout, JPanel cardPanel, JFrame main) {
 
         this.cardLayout = cardLayout;
@@ -59,7 +74,7 @@ public class LoginView extends JPanel {
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(validatePassword(usernameField.getText(), String.valueOf(passwordField.getPassword()))){
+                if(validatePassword(usernameField.getText(), passwordField.getText())){
                     main.setSize(500, 300);
                     cardLayout.show(cardPanel, "Financing");
                     cardPanel.add(new LoginView(cardLayout, cardPanel, main), "Login");
@@ -80,23 +95,34 @@ public class LoginView extends JPanel {
     }
     private static boolean validatePassword(String user, String password) {
         boolean validation;
-        byte[] salt = getSalt();
         // Password saisi par l'utilisateur
-        byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), salt);
+//        byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), SALT);
+//        System.out.println(password);
+        InvestorDAO investorDAO = new InvestorDAOImpl();
+        List<Investor> listFromInvestor = investorDAO.getAllInvestor();
+
+        ClientDAO clientDAO = new ClientDAOImpl();
+        List<Client> listFromClient = clientDAO.getAllClients();
+
+        for(int i =0; i< listFromClient.size(); i++){
+            if(Objects.equals(listFromClient.get(i).getEmail(), user) && Objects.equals(listFromClient.get(i).getPassword(), password)){
+                return true;
+            }
+        }
+
+        for(int i =0; i< listFromInvestor.size(); i++){
+            if(Objects.equals(listFromInvestor.get(i).getEmail(), user) && Objects.equals(listFromInvestor.get(i).getPassword(), password)){
+                return true;
+            }
+        }
 
         // USAR O método getAllClients da classe ClientDAOImpl para trazer o password do banco de dados
         // E substituir o valor fixo "12345678" da linha abaixo
         // Não precisa fazer o hash, pois já está criptografado no banco de dados.
         // É só comparar na linha 93  com o password digitado pelo cliente da linha 85
-        byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), salt);
+        byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), SALT);
 
-        if(Arrays.equals(hashedPassword, verificationHash)){
-            validation = true;
-        }
-        else{
-            validation = false;
-        }
-        return validation;
+        return false;
     }
 
     static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {
@@ -113,6 +139,6 @@ public class LoginView extends JPanel {
         SecureRandom sr = new SecureRandom();
         byte[] salt = new byte[16];
         sr.nextBytes(salt);
-        return salt;
+        return SALT;
     }
 }

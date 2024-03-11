@@ -40,6 +40,7 @@ public class FinancingForm extends JPanel {
 
         // Configuration du layout en grille pour organiser les composants
         setLayout(new GridLayout(0, 2, 10, 10));
+        setLayout(new GridLayout(0, 2, 10, 10));
 
         vinField = new JTextField();
         vinLabel = new JLabel("Numéro d'identification du véhicule (NIV): ");

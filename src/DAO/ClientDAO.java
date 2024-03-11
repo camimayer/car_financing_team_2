@@ -7,6 +7,6 @@ import java.util.List;
 public interface ClientDAO {
     void addClient(Client client);
     void deleteClient(Client client);
-    List<Client>  getAllClients(Client client);
+    List<Client>  getAllClients();
 
 }
