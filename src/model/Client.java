@@ -24,6 +24,10 @@ public class Client extends User {
     public Client() {
         super();
     }
+    public Client(String email, String password) {
+        super(email, password);
+    }
+
 
     public String getJobInfo() {
         return jobInfo;
@@ -78,11 +82,12 @@ public class Client extends User {
         return "Client{" +
                 ", fullName='" + getFullName() + '\'' +
                 ", email='" + getEmail() + '\'' +
-                ", phoneNumber=" + getPhoneNumber() +
+                ", password=" + getPassword() + '\'' +
+                ", phoneNumber=" + getPhoneNumber() + '\'' +
                 ", jobInfo='" + jobInfo + '\'' +
-                ", annualIncome=" + annualIncome +
-                ", creditNote=" + creditNote +
-                ", birthDateField=" + birthDateField +
+                ", annualIncome=" + annualIncome + '\'' +
+                ", creditNote=" + creditNote + '\'' +
+                ", birthDateField=" + birthDateField + '\'' +
                 ", maritalStatus='" + maritalStatus + '\'' +
                 ", yearsInCanada=" + yearsInCanada +
                 '}';

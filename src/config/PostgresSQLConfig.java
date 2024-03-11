@@ -28,12 +28,44 @@ public class PostgresSQLConfig {
                 "duree INT," +
                 "type VARCHAR(20)" +
                 ");";
+        String createTableClientSQL = "CREATE TABLE IF NOT EXISTS client (" +
+                "idClient SERIAL PRIMARY KEY," +
+                "fullName VARCHAR(30)," +
+                "email VARCHAR(25)," +
+                "password VARCHAR(1024)," +
+                "phoneNumber VARCHAR(15)," +
+                "jobInfo VARCHAR(25)," +
+                "annualIncome DECIMAL(10, 2)," +
+                "creditNote INT," +
+                "birthDateField date," +
+                "maritalStatus VARCHAR(15)," +
+                "yearsInCanada INT" +
+                ");";
+
+        String createTableInvestorSQL = "CREATE TABLE IF NOT EXISTS investor (" +
+                "idInvestor SERIAL PRIMARY KEY," +
+                "fullName VARCHAR(30)," +
+                "email VARCHAR(25)," +
+                "password VARCHAR(1024)," +
+                "phoneNumber VARCHAR(15)," +
+                "bankName VARCHAR(20)," +
+                "accountDetails VARCHAR(15)," +
+                "riskLevel VARCHAR(15)," +
+                "levelEducation VARCHAR(15)" +
+                ");";
 
         try (Connection conn = connect();
              Statement statement = conn.createStatement()) {
             // Execute the SQL statement to create the table
             statement.execute(createTableSQL);
             System.out.println("Table 'financement' created or already exists.");
+//            statement.execute("DROP TABLE client;");
+            statement.execute(createTableClientSQL);
+            System.out.println("Table 'client' created or already exists.");
+//            statement.execute("DROP TABLE investor;");
+            statement.execute(createTableInvestorSQL);
+            System.out.println("Table 'Investor' created or already exists.");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

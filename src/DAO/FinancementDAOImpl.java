@@ -1,11 +1,14 @@
 package DAO;
 
 import config.PostgresSQLConfig;
+import model.Client;
 import model.Financement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FinancementDAOImpl implements FinancementDAO{
@@ -46,7 +49,28 @@ public class FinancementDAOImpl implements FinancementDAO{
 
     @Override
     public List<Financement> getAllFinancements() {
-        // After
-        return null;
+        String SQL_LIST = "SELECT * from financement";
+        List <Financement> listFromFinancements = new ArrayList<>();
+
+        try (Connection conn = PostgresSQLConfig.connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_LIST);
+             ResultSet rs = pstmt.executeQuery()){
+
+            while (rs.next()){
+                String vinDB = rs.getString("VINDB");
+                String marqueDB = rs.getString("MarqueDB");
+                String modeleDB = rs.getString("ModeleDB");
+                Integer anneeDB = rs.getInt("AnneeDB");
+                Double montantDB = rs.getDouble("MontantDB");
+                Integer kilometrageDB = rs.getInt("KilometrageDB");
+                Integer dureeDB = rs.getInt("DureeDB");
+                String typeDB = rs.getString("TypeDB");
+                Financement financementDB = new Financement(vinDB, marqueDB, modeleDB, anneeDB, montantDB, kilometrageDB, dureeDB, typeDB);
+                listFromFinancements.add(financementDB);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listFromFinancements;
     }
 }
