@@ -1,13 +1,26 @@
 package view;
+import DAO.ClientDAO;
+import DAO.ClientDAOImpl;
+import DAO.InvestorDAO;
+import DAO.InvestorDAOImpl;
 import helper.Helper;
 import model.Client;
 import model.Investor;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+
+import static helper.Helper.dateConverter;
+import static view.LoginView.getSalt;
+import static view.LoginView.hashPasswordWithSalt;
 
 // Définition de la classe RegisterView qui étend JPanel
 public class RegisterView extends JPanel {
@@ -116,7 +129,7 @@ public class RegisterView extends JPanel {
             public void actionPerformed(ActionEvent e){
                 JComboBox<String> combo = (JComboBox<String>) e.getSource();
                 String selectedItem = (String) combo.getSelectedItem();
-                System.out.println(selectedItem);
+//                System.out.println(selectedItem);
                 viewControl(selectedItem, registerButton, backButton);
             }
         });
@@ -181,9 +194,11 @@ public class RegisterView extends JPanel {
                     if (isPasswordValid()) {
                         // Création d'une instance de Client ou Investisseur selon le type sélectionné
                         if ("Client".equals(userTypeComboBox.getSelectedItem())) {
-                            //print client
+                            // Ajoute client dans la base de donées
+                            addClientToDB();
                             System.out.println(prepareClient());
                         } else {
+                            addInvestorToDB();
                             System.out.println(prepareInvestor());
                         }
 
@@ -201,7 +216,24 @@ public class RegisterView extends JPanel {
         add(backButton);
     }
 
-//    private void viewControl(String typeView, JButton inscriptionButton, JLabel line) {
+    public void listClientFromDB(){
+        Client client = prepareClient();
+        ClientDAO clientDAO = new ClientDAOImpl();
+        clientDAO.getAllClients(client);
+//        List<Client> retorno = clientDAO.getAllClients(client);
+    }
+    public void addClientToDB(){
+        Client client = prepareClient();
+        ClientDAO clientDAO = new ClientDAOImpl();
+        clientDAO.addClient(client);
+    }
+
+    public void addInvestorToDB(){
+        Investor investor = prepareInvestor();
+        InvestorDAO investorDAO = new InvestorDAOImpl();
+        investorDAO.addInvestor(investor);
+    }
+
     private void viewControl(String typeView, JButton inscriptionButton, JButton retourButton) {
         var isInvestor = "Investisseur".equals(typeView);
         var isClient = "Client".equals(typeView);
@@ -262,11 +294,13 @@ public class RegisterView extends JPanel {
     }
 
     private Client prepareClient() {
+        byte[] salt = getSalt();
+        byte[] hashedPassword = hashPasswordWithSalt(passwordField.getText().getBytes(), salt);
 
         Client client = new Client();
         client.setFullName( fullNameField.getText());
         client.setEmail(emailField.getText());
-        client.setPassword(String.copyValueOf(passwordField.getPassword()));
+        client.setPassword(Arrays.toString(hashedPassword));
         client.setPhoneNumber(phoneNumberField.getText());
         client.setJobInfo(jobInfoField.getText());
         if (!Objects.isNull(annualIncomeField.getText()) && !annualIncomeField.getText().isEmpty()) {
@@ -278,7 +312,7 @@ public class RegisterView extends JPanel {
         }
 
         if (!Objects.isNull(birthDateField.getText()) && !birthDateField.getText().isEmpty()) {
-            client.setBirthDateField(Helper.dateConverter(birthDateField.getText()));
+            client.setBirthDateField(dateConverter(birthDateField.getText()));
         }
 
         client.setMaritalStatus(maritalStatusField.getText());
@@ -291,11 +325,12 @@ public class RegisterView extends JPanel {
     }
 
     private Investor prepareInvestor() {
-
+        byte[] salt = getSalt();
+        byte[] hashedPassword = hashPasswordWithSalt(passwordField.getText().getBytes(), salt);
         var investor = new Investor();
         investor.setFullName( fullNameField.getText());
         investor.setEmail(emailField.getText());
-        investor.setPassword(String.copyValueOf(passwordField.getPassword()));
+        investor.setPassword(Arrays.toString(hashedPassword));
         investor.setPhoneNumber(phoneNumberField.getText());
         investor.setBankName(bankNameField.getText());
         investor.setAccountDetails(accountDetailsField.getText());

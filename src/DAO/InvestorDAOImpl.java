@@ -1,0 +1,47 @@
+package DAO;
+
+import config.PostgresSQLConfig;
+import model.Investor;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+public class InvestorDAOImpl implements InvestorDAO{
+
+    @Override
+    public void addInvestor(Investor investor) {
+        String SQL_INSERT = "INSERT INTO investor (fullName, email, password, phoneNumber, bankName, accountDetails, riskLevel, levelEducation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = PostgresSQLConfig.connect();
+             PreparedStatement statement = conn.prepareStatement(SQL_INSERT)) {
+
+            statement.setString(1, investor.getFullName());
+            statement.setString(2, investor.getEmail());
+            statement.setString(3, investor.getPassword());
+            statement.setString(4, investor.getPhoneNumber());
+            statement.setString(5, investor.getBankName());
+            statement.setString(6, investor.getAccountDetails());
+            statement.setString(7, investor.getRiskLevel());
+            statement.setString(8, investor.getLevelEducation());
+
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("A investor was inserted successfully!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteInvestor(Investor investor) {
+
+    }
+
+    @Override
+    public List<Investor> getAllInvestor() {
+        return null;
+    }
+}

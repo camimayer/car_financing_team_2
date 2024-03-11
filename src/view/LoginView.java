@@ -81,26 +81,25 @@ public class LoginView extends JPanel {
     private static boolean validatePassword(String user, String password) {
         boolean validation;
         byte[] salt = getSalt();
-
+        // Password saisi par l'utilisateur
         byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), salt);
 
-        //verification
+        // USAR O método getAllClients da classe ClientDAOImpl para trazer o password do banco de dados
+        // E substituir o valor fixo "12345678" da linha abaixo
+        // Não precisa fazer o hash, pois já está criptografado no banco de dados.
+        // É só comparar na linha 93  com o password digitado pelo cliente da linha 85
         byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), salt);
 
         if(Arrays.equals(hashedPassword, verificationHash)){
-//            JOptionPane.showMessageDialog(null, "Login: " + user + "\nPassword: " + hashedPassword, "Welcome",
-//                    JOptionPane.INFORMATION_MESSAGE);
             validation = true;
         }
         else{
-//            JOptionPane.showMessageDialog(null, "Invalide password. Try again. " , "Welcome",
-//                    JOptionPane.INFORMATION_MESSAGE);
             validation = false;
         }
         return validation;
     }
 
-    private static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {
+    static byte[] hashPasswordWithSalt(byte[] password, byte[] salt) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(salt);
@@ -110,7 +109,7 @@ public class LoginView extends JPanel {
         }
     }
 
-    private static byte[] getSalt() {
+    static byte[] getSalt() {
         SecureRandom sr = new SecureRandom();
         byte[] salt = new byte[16];
         sr.nextBytes(salt);

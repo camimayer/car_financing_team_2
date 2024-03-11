@@ -1,9 +1,13 @@
 package view;
 
+import model.Financement;
+import DAO.FinancementDAOImpl;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FinanceView extends JPanel {
     CardLayout cardLayout;
@@ -14,6 +18,9 @@ public class FinanceView extends JPanel {
           this.cardPanel = cardPanel;
           this.main = main;
 
+          // LISTA DE FINACIAMENTOS TRAZIDOS DO BANCO DE DADOS
+          List<Financement> financementsFromDB = getFinancements();
+
           setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
           JPanel totalPanel = new JPanel(new GridLayout(0, 1, 20, 15));
@@ -23,7 +30,7 @@ public class FinanceView extends JPanel {
           totalPanel.add(title);
 
           JPanel marquePanel = new JPanel(new GridLayout(0, 1));
-
+//          PEGAR A MARCA E OS OUTROS DADOS NA LISTA RETIRADA DO BANCO DE DADOS
           JLabel marqueLabel = new JLabel("Marque: BMW");
           marqueLabel.setHorizontalAlignment(SwingConstants.LEFT);
           marqueLabel.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -109,7 +116,10 @@ public class FinanceView extends JPanel {
 
     }
 
-
-
+    private List<Financement> getFinancements() {
+        List<Financement> financementsFromDB = new ArrayList<>();
+    // PRECISA TRAZER A LISTA DO METODO getAllFinancements() DA CLASSE FinancementDAOImpl
+        return financementsFromDB ;
+    }
 
 }

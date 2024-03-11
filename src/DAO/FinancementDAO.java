@@ -1,5 +1,6 @@
 package DAO;
 
+import model.Client;
 import model.Financement;
 
 import java.util.List;
