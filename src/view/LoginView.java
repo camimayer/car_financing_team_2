@@ -79,9 +79,14 @@ public class LoginView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(validatePassword(usernameField.getText(), passwordField.getText(), checkInvestor.isSelected())){
                     main.setSize(500, 300);
-                    cardLayout.show(cardPanel, "Financing");
-                    cardPanel.add(new LoginView(cardLayout, cardPanel, main), "Login");
-                } else {
+                    if(checkInvestor.isSelected() == true){
+                        cardLayout.show(cardPanel, "Investor");
+                    }
+                    else {
+                        cardLayout.show(cardPanel, "Financing");
+                        cardPanel.add(new LoginView(cardLayout, cardPanel, main), "Login");
+                    }
+                }else {
                     JOptionPane.showMessageDialog(null, "Invalide password. Try again. " , "Welcome",
                                                     JOptionPane.INFORMATION_MESSAGE);
                 }

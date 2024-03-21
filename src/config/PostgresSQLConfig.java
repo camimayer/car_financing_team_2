@@ -54,9 +54,25 @@ public class PostgresSQLConfig {
                 "levelEducation VARCHAR(15)" +
                 ");";
 
+        String createTableInvestissementSQL = "CREATE TABLE IF NOT EXISTS investissement (" +
+                "idInvestissement SERIAL PRIMARY KEY," +
+                "idInvestor INT," +
+                "numTransit VARCHAR(25)," +
+                "numInst VARCHAR(10)," +
+                "numCompt VARCHAR(15)," +
+                "bankName VARCHAR(25)," +
+                "montant DECIMAL(10,2)" +
+                ");";
+
+        String createTableRetraitSQL = "CREATE TABLE IF NOT EXISTS retrait (" +
+                "idRetrait SERIAL PRIMARY KEY," +
+                "idInvestor INT," +
+                "montant DECIMAL(10,2)" +
+                ");";
+
+
         try (Connection conn = connect();
              Statement statement = conn.createStatement()) {
-            // Execute the SQL statement to create the table
             statement.execute(createTableSQL);
             System.out.println("Table 'financement' created or already exists.");
 //            statement.execute("DROP TABLE client;");
@@ -65,6 +81,12 @@ public class PostgresSQLConfig {
 //            statement.execute("DROP TABLE investor;");
             statement.execute(createTableInvestorSQL);
             System.out.println("Table 'Investor' created or already exists.");
+
+            statement.execute(createTableInvestissementSQL);
+            System.out.println("Table 'Investissement' created or already exists.");
+
+            statement.execute(createTableRetraitSQL);
+            System.out.println("Table 'Retrait' created or already exists.");
 
         } catch (SQLException e) {
             e.printStackTrace();

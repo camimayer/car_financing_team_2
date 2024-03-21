@@ -26,7 +26,7 @@ public class FinanceView extends JPanel {
           FinancementDAO financementDAO = new FinancementDAOImpl();
           List<Financement> listFromFinancement = financementDAO.getAllFinancements();
 
-//          OBTER O ULTIMO ELEMENTO DA LISTA JA QUE NAO TEMOS USUARIOS ASSOCIADOS AOS FINANCIAMENTOS
+
 
           Financement currentFinancement = listFromFinancement.get(listFromFinancement.size() - 1);
 
@@ -39,13 +39,10 @@ public class FinanceView extends JPanel {
           totalPanel.add(title);
 
           JPanel marquePanel = new JPanel(new GridLayout(0, 1));
-//          PEGAR A MARCA E OS OUTROS DADOS NA LISTA RETIRADA DO BANCO DE DADOS
           JLabel marqueLabel = new JLabel("Marque: " + currentFinancement.getMarque());
           marqueLabel.setHorizontalAlignment(SwingConstants.LEFT);
           marqueLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-//          JTextField marqueField = new JTextField(15);
           marquePanel.add(marqueLabel);
-//          marquePanel.add(marqueField);
 
           totalPanel.add(marquePanel);
 
@@ -54,9 +51,7 @@ public class FinanceView extends JPanel {
           JLabel modeleLabel = new JLabel("Modele: " + currentFinancement.getModele());
           modeleLabel.setHorizontalAlignment(SwingConstants.LEFT);
           modeleLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-//          JTextField modeleField = new JTextField(15);
           modelePanel.add(modeleLabel);
-//          modelePanel.add(modeleField);
 
           totalPanel.add(modelePanel);
 
@@ -65,9 +60,7 @@ public class FinanceView extends JPanel {
           JLabel anneeLabel = new JLabel("Annee: " + currentFinancement.getAnnee());
           anneeLabel.setHorizontalAlignment(SwingConstants.LEFT);
           anneeLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-//          JTextField anneeField = new JTextField(15);
           anneePanel.add(anneeLabel);
-//          anneePanel.add(marqueField);
 
           totalPanel.add(anneePanel);
 

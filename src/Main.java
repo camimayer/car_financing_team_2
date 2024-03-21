@@ -19,6 +19,7 @@ public class Main extends JFrame {
 
     private Image backgroundImage;
 
+    private InvestorView investorView = new InvestorView(cardLayout, cardPanel, this);
 
     public Main() {
         PostgresSQLConfig.initializeDatabase();
@@ -64,6 +65,8 @@ public class Main extends JFrame {
         cardPanel.add(registerView, "Register");
         cardPanel.add(financingForm, "Financing");
         cardPanel.add(financeView, "FinanceStatus");
+        cardPanel.add(investorView, "Investor");
+
 
         add(cardPanel);
         loginButton.addActionListener(new ActionListener() {
