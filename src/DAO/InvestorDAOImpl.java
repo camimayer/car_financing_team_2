@@ -1,12 +1,11 @@
 package DAO;
 
 import config.PostgresSQLConfig;
+import model.Client;
 import model.Investor;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InvestorDAOImpl implements InvestorDAO{
@@ -42,6 +41,25 @@ public class InvestorDAOImpl implements InvestorDAO{
 
     @Override
     public List<Investor> getAllInvestor() {
-        return null;
+        String SQL_LIST = "SELECT idinvestor, fullname, email, password, phonenumber, bankname, accountdetails from investor";
+        List <Investor> listFromInvestors = new ArrayList<>();
+
+        try (Connection conn = PostgresSQLConfig.connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_LIST);
+             ResultSet rs = pstmt.executeQuery()){
+
+            while (rs.next()){
+                Investor investorDB = new Investor();
+
+                investorDB.setFullName(rs.getString("fullname"));
+                investorDB.setEmail(rs.getString("email"));
+                investorDB.setPassword(rs.getString("password"));
+
+                listFromInvestors.add(investorDB);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listFromInvestors;
     }
 }

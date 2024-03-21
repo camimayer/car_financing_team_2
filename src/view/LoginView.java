@@ -56,6 +56,9 @@ public class LoginView extends JPanel {
         usernamePanel.add(passwordLabel);
         usernamePanel.add(passwordField);
 
+        JCheckBox checkInvestor = new JCheckBox("I'm a investor");
+        usernamePanel.add(checkInvestor);
+
         totalPanel.add(usernamePanel);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -74,7 +77,7 @@ public class LoginView extends JPanel {
 
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(validatePassword(usernameField.getText(), passwordField.getText())){
+                if(validatePassword(usernameField.getText(), passwordField.getText(), checkInvestor.isSelected())){
                     main.setSize(500, 300);
                     cardLayout.show(cardPanel, "Financing");
                     cardPanel.add(new LoginView(cardLayout, cardPanel, main), "Login");
@@ -93,7 +96,7 @@ public class LoginView extends JPanel {
         add(totalPanel);
 
     }
-    private static boolean validatePassword(String user, String password) {
+    private static boolean validatePassword(String user, String password, boolean checkInvestor) {
         boolean validation;
         // Password saisi par l'utilisateur
 //        byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), SALT);
@@ -104,22 +107,22 @@ public class LoginView extends JPanel {
         ClientDAO clientDAO = new ClientDAOImpl();
         List<Client> listFromClient = clientDAO.getAllClients();
 
-        for(int i =0; i< listFromClient.size(); i++){
-            if(Objects.equals(listFromClient.get(i).getEmail(), user) && Objects.equals(listFromClient.get(i).getPassword(), password)){
-                return true;
+        if(!checkInvestor){
+            for(int i =0; i< listFromClient.size(); i++){
+                if(Objects.equals(listFromClient.get(i).getEmail(), user) && Objects.equals(listFromClient.get(i).getPassword(), password)){
+                    return true;
+                }
             }
         }
 
-        for(int i =0; i< listFromInvestor.size(); i++){
-            if(Objects.equals(listFromInvestor.get(i).getEmail(), user) && Objects.equals(listFromInvestor.get(i).getPassword(), password)){
-                return true;
+        else{
+            for(int i =0; i< listFromInvestor.size(); i++){
+                if(Objects.equals(listFromInvestor.get(i).getEmail(), user) && Objects.equals(listFromInvestor.get(i).getPassword(), password)){
+                    return true;
+                }
             }
         }
 
-        // USAR O método getAllClients da classe ClientDAOImpl para trazer o password do banco de dados
-        // E substituir o valor fixo "12345678" da linha abaixo
-        // Não precisa fazer o hash, pois já está criptografado no banco de dados.
-        // É só comparar na linha 93  com o password digitado pelo cliente da linha 85
         byte[] verificationHash = hashPasswordWithSalt("12345678".getBytes(), SALT);
 
         return false;
