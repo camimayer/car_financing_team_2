@@ -17,17 +17,34 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="8db32618-00a9-4048-9192-0eb957550f66">
-      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from financement;]]></console>
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from investor;]]></console>
+      <console name="Connection 1" type="STANDARD" schema="postgres" session="Main"><![CDATA[SELECT * FROM "public".client;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="8db32618-00a9-4048-9192-0eb957550f66" object-ref="schemas/public/tables/financement" />
+      <object connection-id="8db32618-00a9-4048-9192-0eb957550f66" object-ref="schemas/public/tables/client" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="8db32618-00a9-4048-9192-0eb957550f66" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="8db32618-00a9-4048-9192-0eb957550f66" dataset="public.financement" active-filter-id="6fbbeeae-f15b-48cb-b0f2-592580a7a7a1">
+      <filter id="6fbbeeae-f15b-48cb-b0f2-592580a7a7a1" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
+    <filter-actions connection-id="8db32618-00a9-4048-9192-0eb957550f66" dataset="public.investor" active-filter-id="EMPTY_FILTER">
+      <filter id="7e293ce1-9beb-4408-869c-a765c7bd5d56" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="idinvestor" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="8db32618-00a9-4048-9192-0eb957550f66" dataset="public.client" active-filter-id="63152090-3b72-4ad6-afca-9a074c22c33b">
+      <filter id="63152090-3b72-4ad6-afca-9a074c22c33b" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

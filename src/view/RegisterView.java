@@ -329,7 +329,8 @@ public class RegisterView extends JPanel {
         var investor = new Investor();
         investor.setFullName( fullNameField.getText());
         investor.setEmail(emailField.getText());
-        investor.setPassword(Arrays.toString(hashedPassword));
+//        investor.setPassword(Arrays.toString(hashedPassword));
+        investor.setPassword(passwordField.getText());
         investor.setPhoneNumber(phoneNumberField.getText());
         investor.setBankName(bankNameField.getText());
         investor.setAccountDetails(accountDetailsField.getText());
