@@ -25,10 +25,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="8db32618-00a9-4048-9192-0eb957550f66" object-ref="schemas/public/tables/financement" />
-      <object connection-id="8db32618-00a9-4048-9192-0eb957550f66" object-ref="schemas/public/tables/client" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="8db32618-00a9-4048-9192-0eb957550f66" />
