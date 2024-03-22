@@ -18,6 +18,10 @@ public class Investissement {
         this.montant = montant;
     }
 
+    public Investissement() {
+
+    }
+
     public int getIdInvestor() {
         return idInvestor;
     }
