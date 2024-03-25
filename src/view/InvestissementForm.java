@@ -26,6 +26,8 @@ public class InvestissementForm extends JPanel {
     private JButton backButton = new JButton("Retour à la page principale");
     int idInvestor = new Investor().getIdInvestor();
 
+
+//layout
     public InvestissementForm(CardLayout cardLayout, JPanel cardPanel, JFrame main) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
