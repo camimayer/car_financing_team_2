@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class Client extends User {
 
+
+    private int clientId;
     private String jobInfo;
     private Double annualIncome;
     private Integer creditNote;
@@ -24,8 +26,9 @@ public class Client extends User {
     public Client() {
         super();
     }
-    public Client(String email, String password) {
+    public Client(String email, String password, int clientId) {
         super(email, password);
+        this.clientId = clientId;
     }
 
 
@@ -75,6 +78,14 @@ public class Client extends User {
 
     public void setYearsInCanada(Integer yearsInCanada) {
         this.yearsInCanada = yearsInCanada;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     @Override

@@ -52,6 +52,7 @@ public class InvestorDAOImpl implements InvestorDAO{
                 investorDB.setFullName(rs.getString("fullname"));
                 investorDB.setEmail(rs.getString("email"));
                 investorDB.setPassword(rs.getString("password"));
+                investorDB.setIdInvestor(rs.getInt("idinvestor"));
 
                 listFromInvestors.add(investorDB);
             }

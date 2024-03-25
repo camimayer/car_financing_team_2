@@ -3,6 +3,7 @@ import DAO.InvestissementDAO;
 import DAO.InvestissementDAOImpl;
 import model.Investissement;
 import model.Investor;
+import model.LoggedUser;
 import view.InvestorView;
 
 import javax.swing.*;
@@ -100,6 +101,9 @@ public class InvestissementForm extends JPanel {
     }
 
     public Investissement prepareInvestissement() {
+        LoggedUser loggedUser = LoggedUser.getInstance();
+        System.out.println(loggedUser.getLoggedUserId());
+
         Investissement investissement = new Investissement();
         investissement.setNomBanque(bankNameField.getText());
         investissement.setNumTransit(transitNumberField.getText());
@@ -108,7 +112,7 @@ public class InvestissementForm extends JPanel {
         if (!Objects.isNull(amountField.getText()) && !amountField.getText().isEmpty()) {
             investissement.setMontant(Double.valueOf(amountField.getText()));
         }
-        investissement.setIdInvestor(idInvestor);
+        investissement.setIdInvestor(loggedUser.getLoggedUserId());
         investissement.setInvestissementDate(dateConverter("25/03/2024"));
         investissement.setInvestissementType("INVESTISSEMENT");
         return investissement;

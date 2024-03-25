@@ -22,7 +22,6 @@ public class LoggedUser {
         return instance;
     }
 
-    // Getters e setters para loggedUserId e isInvestor
     public int getLoggedUserId() {
         return loggedUserId;
     }

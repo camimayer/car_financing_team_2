@@ -29,7 +29,6 @@ public class Investissement {
     }
 
     public int getIdInvestor() {
-        idInvestor = new Investor().getIdInvestor();
         return idInvestor;
     }
 

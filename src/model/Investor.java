@@ -1,7 +1,6 @@
 package model;
 
 public class Investor extends User{
-
     private String bankName;
     private String accountDetails;
     private String riskLevel;
