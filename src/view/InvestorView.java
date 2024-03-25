@@ -4,6 +4,7 @@ import DAO.InvestissementDAO;
 import DAO.InvestissementDAOImpl;
 import model.Investissement;
 import model.Investor;
+import model.LoggedUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,10 +36,13 @@ public class InvestorView extends JPanel {
         this.main = main;
         JLabel investmentInfoLabel;
 
+        LoggedUser loggedUser = LoggedUser.getInstance();
+
         InvestissementDAO investissementDAO = new InvestissementDAOImpl();
-        List<Investissement> listFromInvestissement = investissementDAO.getAllInvestissement(0);
+        List<Investissement> listFromInvestissement = investissementDAO.getAllInvestissement(loggedUser.getLoggedUserId());
 
         System.out.println(listFromInvestissement.size());
+        System.out.println(loggedUser.getLoggedUserId());
 
         if(listFromInvestissement.size() == 0){
             investmentInfoLabel = new JLabel("Investment Information: ");

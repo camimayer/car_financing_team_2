@@ -2,6 +2,7 @@ package view;
 import DAO.RetraitDAO;
 import DAO.RetraitDAOImpl;
 import model.Investor;
+import model.LoggedUser;
 import model.Retrait;
 import view.InvestorView;
 
@@ -99,6 +100,8 @@ public class RetraitForm extends JPanel {
 
     public Retrait prepareRetrait() {
         Retrait retrait = new Retrait();
+        LoggedUser loggedUser = LoggedUser.getInstance();
+
         retrait.setNomBanque(bankNameField.getText());
         retrait.setNumTransit(transitNumberField.getText());
         retrait.setNumInstituition(institutionNumberField.getText());
@@ -106,7 +109,7 @@ public class RetraitForm extends JPanel {
         if (!Objects.isNull(amountField.getText()) && !amountField.getText().isEmpty()) {
             retrait.setMontant(Double.valueOf(amountField.getText()));
         }
-        retrait.setIdInvestor(idInvestor);
+        retrait.setIdInvestor(loggedUser.getLoggedUserId());
         retrait.setInvestissementDate(dateConverter("25/03/2024"));
         retrait.setInvestissementType("RETRAIT");
         return retrait;

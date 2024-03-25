@@ -52,7 +52,8 @@ public class ClientDAOImpl implements ClientDAO{
             while (rs.next()){
                 String emailDB = rs.getString("email");
                 String passwordDB = rs.getString("password");
-                Client clientDB = new Client(emailDB, passwordDB);
+                int cliendId = rs.getInt("idClient");
+                Client clientDB = new Client(emailDB, passwordDB, cliendId);
                 listFromClients.add(clientDB);
             }
         } catch (SQLException e) {

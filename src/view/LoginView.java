@@ -2,10 +2,7 @@ package view;
 
 import DAO.*;
 import com.sun.tools.javac.Main;
-import model.Client;
-import model.Financement;
-import model.Investor;
-import model.User;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,6 +77,8 @@ public class LoginView extends JPanel {
                 if(validatePassword(usernameField.getText(), passwordField.getText(), checkInvestor.isSelected())){
                     main.setSize(500, 300);
                     if(checkInvestor.isSelected() == true){
+                        InvestorView investorView = new InvestorView(cardLayout, cardPanel, main);
+                        cardPanel.add(investorView, "Investor");
                         cardLayout.show(cardPanel, "Investor");
                     }
                     else {
@@ -115,6 +114,9 @@ public class LoginView extends JPanel {
         if(!checkInvestor){
             for(int i =0; i< listFromClient.size(); i++){
                 if(Objects.equals(listFromClient.get(i).getEmail(), user) && Objects.equals(listFromClient.get(i).getPassword(), password)){
+                    LoggedUser loggedUser = LoggedUser.getInstance();
+                    loggedUser.setLoggedUserId(listFromClient.get(i).getClientId());
+                    loggedUser.setInvestor(false);
                     return true;
                 }
             }
@@ -123,6 +125,9 @@ public class LoginView extends JPanel {
         else{
             for(int i =0; i< listFromInvestor.size(); i++){
                 if(Objects.equals(listFromInvestor.get(i).getEmail(), user) && Objects.equals(listFromInvestor.get(i).getPassword(), password)){
+                    LoggedUser loggedUser = LoggedUser.getInstance();
+                    loggedUser.setLoggedUserId(listFromInvestor.get(i).getIdInvestor());
+                    loggedUser.setInvestor(true);
                     return true;
                 }
             }
