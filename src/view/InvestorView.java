@@ -17,7 +17,7 @@ public class InvestorView extends JPanel {
     JFrame main;
 
 
-//    private JLabel investmentInfoLabel = new JLabel("Investment Information:");
+    //    private JLabel investmentInfoLabel = new JLabel("Investment Information:");
 //    private JLabel investmentInfoLabel;
     private JLabel totalInvestedLabel;
     private JLabel transactionListLabel = new JLabel("Transaction List:");
@@ -36,16 +36,19 @@ public class InvestorView extends JPanel {
         JLabel investmentInfoLabel;
 
         InvestissementDAO investissementDAO = new InvestissementDAOImpl();
-        List<Investissement> listFromInvestissement = investissementDAO.getAllInvestissement(idInvestor);
+        List<Investissement> listFromInvestissement = investissementDAO.getAllInvestissement(0);
+
+        System.out.println(listFromInvestissement.size());
+
         if(listFromInvestissement.size() == 0){
             investmentInfoLabel = new JLabel("Investment Information: ");
         }else {
             Investissement currentInvestissement = listFromInvestissement.get(listFromInvestissement.size() - 1);
             investmentInfoLabel = new JLabel("Investment Information: " +
-                                            currentInvestissement.getNomBanque() + " / " +
-                                            currentInvestissement.getNumTransit() + " / " +
-                                            currentInvestissement.getNumInstituition() + " / " +
-                                            currentInvestissement.getNumCompte());
+                    currentInvestissement.getNomBanque() + " / " +
+                    currentInvestissement.getNumTransit() + " / " +
+                    currentInvestissement.getNumInstituition() + " / " +
+                    currentInvestissement.getNumCompte());
         }
 
         for (Investissement investissement : listFromInvestissement){
@@ -100,4 +103,4 @@ public class InvestorView extends JPanel {
         add(transactionPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
-    }
+}

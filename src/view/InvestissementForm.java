@@ -78,7 +78,7 @@ public class InvestissementForm extends JPanel {
         if (!Objects.isNull(amountField.getText()) && !amountField.getText().isEmpty()) {
             investissement.setMontant(Double.valueOf(amountField.getText()));
         }
-        investissement.setIdInvestor(idInvestor);
+        investissement.setIdInvestor(1);
         investissement.setInvestissementDate(dateConverter("25/03/2024"));
         investissement.setInvestissementType("INVESTISSEMENT");
         return investissement;

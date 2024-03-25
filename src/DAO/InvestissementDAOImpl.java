@@ -35,15 +35,16 @@ public class InvestissementDAOImpl implements InvestissementDAO {
 
     @Override
     public List<Investissement> getAllInvestissement(int idInvestor) {
-        String SQL_LIST = "SELECT * from investissement";
-        List <Investissement> listFromInvestissement = new ArrayList<>();
+        String SQL_LIST = "SELECT * FROM investissement WHERE idInvestor = ?";
+        List<Investissement> listFromInvestissement = new ArrayList<>();
 
         try (Connection conn = PostgresSQLConfig.connect();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_LIST);
+             PreparedStatement pstmt = conn.prepareStatement(SQL_LIST)) {
 
-             ResultSet rs = pstmt.executeQuery()){
-//            pstmt.setInt(1, idInvestor);
-            while (rs.next()){
+            pstmt.setInt(1, idInvestor); // Set the investorId parameter
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
                 Investissement investissementDB = new Investissement();
 
                 investissementDB.setIdInvestor(rs.getInt("idInvestor"));
@@ -61,4 +62,5 @@ public class InvestissementDAOImpl implements InvestissementDAO {
         }
         return listFromInvestissement;
     }
+
 }

@@ -17,7 +17,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="8db32618-00a9-4048-9192-0eb957550f66">
-      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from retrait;]]></console>
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from investissement;]]></console>
       <console name="Connection 1" type="STANDARD" schema="postgres" session="Main"><![CDATA[SELECT * FROM "public".client;]]></console>
     </connection>
   </component>
@@ -42,6 +42,8 @@
     <filter-actions connection-id="8db32618-00a9-4048-9192-0eb957550f66" dataset="public.client" active-filter-id="63152090-3b72-4ad6-afca-9a074c22c33b">
       <filter id="63152090-3b72-4ad6-afca-9a074c22c33b" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
+    <filter-actions connection-id="8db32618-00a9-4048-9192-0eb957550f66" dataset="public.investissement" active-filter-id="" />
+    <filter-actions connection-id="8db32618-00a9-4048-9192-0eb957550f66" dataset="public.retrait" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
