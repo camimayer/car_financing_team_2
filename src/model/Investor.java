@@ -7,6 +7,18 @@ public class Investor extends User{
     private String riskLevel;
     private String levelEducation;
 
+    public int getIdInvestor() {
+        return idInvestor;
+    }
+
+    public void setIdInvestor(int idInvestor) {
+        this.idInvestor = idInvestor;
+    }
+
+    private int idInvestor;
+
+
+
     public String getBankName() {
         return bankName;
     }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface RetraitDAO {
     void addRetrait(Retrait retrait);
-    List<Retrait> getAllRetrait();
+    List<Retrait> getAllRetrait(int idInvestor);
 }

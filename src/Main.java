@@ -21,6 +21,9 @@ public class Main extends JFrame {
 
     private InvestorView investorView = new InvestorView(cardLayout, cardPanel, this);
 
+    private InvestissementForm investissementForm = new InvestissementForm(cardLayout, cardPanel, this);
+    private RetraitForm retraitForm = new RetraitForm(cardLayout, cardPanel, this);
+
     public Main() {
         PostgresSQLConfig.initializeDatabase();
 
@@ -66,7 +69,8 @@ public class Main extends JFrame {
         cardPanel.add(financingForm, "Financing");
         cardPanel.add(financeView, "FinanceStatus");
         cardPanel.add(investorView, "Investor");
-
+        cardPanel.add(investissementForm, "Investissement");
+        cardPanel.add(retraitForm,"Retrait");
 
         add(cardPanel);
         loginButton.addActionListener(new ActionListener() {
@@ -87,7 +91,6 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Main main = new Main();
                 financeView = new FinanceView(cardLayout, cardPanel, main);
-
                 cardPanel.add(financeView, "FinanceStatus");
                 cardLayout.show(cardPanel, "FinanceStatus");
                 setSize(600, 500);

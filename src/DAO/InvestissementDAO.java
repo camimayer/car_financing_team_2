@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface InvestissementDAO {
     void addInvestissement(Investissement investissement);
-    List<Investissement> getAllInvestissement();
+    List<Investissement> getAllInvestissement(int idInvestor);
 }
