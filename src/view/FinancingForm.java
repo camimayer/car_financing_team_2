@@ -101,9 +101,14 @@ public class FinancingForm extends JPanel {
                             if ("d'Occasion".equals(typeVehiculeComboBox.getSelectedItem())) {
                                 if(validateMileage(kilometrageField.getText())){
                                     addToDB();
+//                                    JOptionPane.showMessageDialog(null, "Financement enregistré avec succès.", "Enregistrementr", JOptionPane.WARNING_MESSAGE);
+                                    cardLayout.show(cardPanel, "Financing");
+                                    cardPanel.add(new FinancingForm(cardLayout, cardPanel, main), "Financing");
+                                    revalidate();
                                 }
                             }else{
                                 addToDB();
+                                JOptionPane.showMessageDialog(null, "Financement enregistré avec succès.", "Enregistrementr", JOptionPane.WARNING_MESSAGE);
                             }
                         }
                     }

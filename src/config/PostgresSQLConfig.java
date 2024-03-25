@@ -59,9 +59,11 @@ public class PostgresSQLConfig {
                 "idInvestor INT," +
                 "numTransit VARCHAR(25)," +
                 "numInst VARCHAR(10)," +
-                "numCompt VARCHAR(15)," +
+                "numCompte VARCHAR(15)," +
                 "bankName VARCHAR(25)," +
-                "montant DECIMAL(10,2)" +
+                "montant DECIMAL(10,2)," +
+                "investissementDate date," +
+                "investissementType VARCHAR(14)"  +
                 ");";
 
         String createTableRetraitSQL = "CREATE TABLE IF NOT EXISTS retrait (" +
@@ -82,6 +84,7 @@ public class PostgresSQLConfig {
             statement.execute(createTableInvestorSQL);
             System.out.println("Table 'Investor' created or already exists.");
 
+//            statement.execute("DROP TABLE IF EXISTS investissement;");
             statement.execute(createTableInvestissementSQL);
             System.out.println("Table 'Investissement' created or already exists.");
 

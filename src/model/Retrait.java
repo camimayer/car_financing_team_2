@@ -1,12 +1,26 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Retrait {
     private int idInvestor;
+    private String nomBanque;
+    private String numTransit;
+    private String numInstituition;
+    private String numCompte;
     private double montant;
+    private LocalDate investissementDate;
+    private String investissementType;
 
-    public Retrait(int idInvestor, double montant) {
+    public Retrait(int idInvestor, String nomBanque, String numTransit, String numInstituition, String numCompte, double montant, LocalDate investissementDate, String investissementType) {
         this.idInvestor = idInvestor;
+        this.nomBanque = nomBanque;
+        this.numTransit = numTransit;
+        this.numInstituition = numInstituition;
+        this.numCompte = numCompte;
         this.montant = montant;
+        this.investissementDate = investissementDate;
+        this.investissementType = investissementType;
     }
 
     public Retrait() {
@@ -27,5 +41,53 @@ public class Retrait {
 
     public void setMontant(double montant) {
         this.montant = montant;
+    }
+
+    public String getNomBanque() {
+        return nomBanque;
+    }
+
+    public void setNomBanque(String nomBanque) {
+        this.nomBanque = nomBanque;
+    }
+
+    public String getNumTransit() {
+        return numTransit;
+    }
+
+    public void setNumTransit(String numTransit) {
+        this.numTransit = numTransit;
+    }
+
+    public String getNumInstituition() {
+        return numInstituition;
+    }
+
+    public void setNumInstituition(String numInstituition) {
+        this.numInstituition = numInstituition;
+    }
+
+    public String getNumCompte() {
+        return numCompte;
+    }
+
+    public void setNumCompte(String numCompte) {
+        this.numCompte = numCompte;
+    }
+
+    public LocalDate getInvestissementDate() {
+        return investissementDate;
+    }
+
+    public void setInvestissementDate(LocalDate investissementDate) {
+        this.investissementDate = investissementDate;
+    }
+
+    public String getInvestissementType() {
+        return investissementType;
+    }
+
+    public void setInvestissementType(String investissementType) {
+        this.investissementType = investissementType;
     }
 }

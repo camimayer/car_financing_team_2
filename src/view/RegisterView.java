@@ -118,7 +118,7 @@ public class RegisterView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 main.setSize(600, 400);
                 cardLayout.show(cardPanel, "Main");
-                cardPanel.add(new FinanceView(cardLayout, cardPanel, main), "Financement");
+                cardPanel.add(new RegisterView(cardLayout, cardPanel, main), "Register");
             }
         });
 
@@ -197,6 +197,10 @@ public class RegisterView extends JPanel {
                             // Ajoute client dans la base de donées
                             addClientToDB();
                             System.out.println(prepareClient());
+                            JOptionPane.showMessageDialog(null, "Client enregistré avec succès.", "Enregistrementr", JOptionPane.WARNING_MESSAGE);
+                            cardLayout.show(cardPanel, "Register");
+                            cardPanel.add(new RegisterView(cardLayout, cardPanel, main), "Register");
+                            revalidate();
                         } else {
                             addInvestorToDB();
                             System.out.println(prepareInvestor());

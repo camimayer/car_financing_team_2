@@ -1,9 +1,7 @@
 package DAO;
 
 import config.PostgresSQLConfig;
-import model.Client;
 import model.Investor;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
