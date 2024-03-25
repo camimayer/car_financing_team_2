@@ -50,7 +50,7 @@ public class InvestissementDAOImpl implements InvestissementDAO {
                 investissementDB.setNomBanque(rs.getString("bankName"));
                 investissementDB.setNumTransit(rs.getString("numtransit"));
                 investissementDB.setNumInstituition(rs.getString("numinst"));
-                investissementDB.setNumCompte(rs.getString("numcompte"));
+                investissementDB.setNumCompte(rs.getString("numcompt"));
                 investissementDB.setMontant(rs.getDouble("montant"));
                 investissementDB.setInvestissementDate(LocalDate.parse(rs.getString("investissementDate")));
                 investissementDB.setInvestissementType(rs.getString("investissementType"));
