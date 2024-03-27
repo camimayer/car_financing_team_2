@@ -54,7 +54,6 @@ public class InvestorView extends JPanel {
                     currentInvestissement.getNumInstituition() + " / " +
                     currentInvestissement.getNumCompte());
         }
-
         for (Investissement investissement : listFromInvestissement){
 
             if ("INVESTISSEMENT".equalsIgnoreCase(investissement.getInvestissementType())){
@@ -107,4 +106,6 @@ public class InvestorView extends JPanel {
         add(transactionPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
     }
+
+
 }

@@ -100,7 +100,7 @@ public class LoginView extends JPanel {
         add(totalPanel);
 
     }
-    private static boolean validatePassword(String user, String password, boolean checkInvestor) {
+    static boolean validatePassword(String user, String password, boolean checkInvestor) {
         boolean validation;
         // Password saisi par l'utilisateur
 //        byte[] hashedPassword = hashPasswordWithSalt(password.getBytes(), SALT);

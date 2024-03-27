@@ -371,8 +371,7 @@ public class RegisterView extends JPanel {
 
     }
 
-    // Méthode pour vérifier si le mot de passe est valide
-    private boolean isPasswordValid() {
+    public boolean isPasswordValid() {
         var password = new String(passwordField.getPassword());
         var confirmPassword = new String(confirmPasswordField.getPassword());
 
@@ -380,10 +379,6 @@ public class RegisterView extends JPanel {
             return false;
         }
 
-
-        // Validation du mot de passe
-        // Le mot de passe doit avoir au moins 8 caractères
-        // Doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial
 
         if (password.length() < 8) {
             return false;

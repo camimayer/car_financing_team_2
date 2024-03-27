@@ -118,4 +118,5 @@ public class FinanceView extends JPanel {
 
     }
 
+
 }
