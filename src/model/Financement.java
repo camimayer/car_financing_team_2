@@ -22,6 +22,10 @@ public class Financement {
         this.type = type;
     }
 
+    public Financement() {
+
+    }
+
     public String getVin() {
         return vin;
     }

@@ -17,7 +17,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="8db32618-00a9-4048-9192-0eb957550f66">
-      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[delete from investissement where idInvestor=0;]]></console>
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from investissement;]]></console>
       <console name="Connection 1" type="STANDARD" schema="postgres" session="Main"><![CDATA[SELECT * FROM "public".client;]]></console>
     </connection>
   </component>
@@ -26,7 +26,6 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="8db32618-00a9-4048-9192-0eb957550f66" object-ref="consoles/Connection 1" />
       <object connection-id="8db32618-00a9-4048-9192-0eb957550f66" object-ref="consoles/Connection" />
     </open-files>
   </component>
